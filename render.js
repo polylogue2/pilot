@@ -90,6 +90,9 @@ const pagePath = path.join(process.cwd(), 'app', pageFile);
       <div class="${containerClasses}">
         ${htmlComponents.join('')}
       </div>
+      <footer>
+        <p>hello</p>
+      </footer>
     </body>
     </html>
   `;
