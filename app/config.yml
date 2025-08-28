@@ -1,0 +1,7 @@
+ui:
+  accent-color: #CAA0FF
+  stylesheet-path: /assets/common.css
+
+pages:
+  include:
+    - pages/dashboard.yml

@@ -1,0 +1,6 @@
+title: Dashboard • Pilot
+components:
+  - type: searchbar
+    placeholder: "Type "
+  - type: footer
+    align: center
