@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3000;
 
-app.use('/assets', express.static(path.join(__dirname, 'app', 'assets')));
+app.use('/app/assets', express.static(path.join(__dirname, 'app', 'assets')));
 
 app.get('/:page', async (req, res) => {
   const { page } = req.params;

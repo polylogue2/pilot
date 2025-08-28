@@ -1,5 +1,12 @@
 title: Dashboard • Pilot
-dock-footer: center
+align: center
+vertical: center
+width: 100px
 components:
   - type: searchbar
     placeholder: "Type here to search..."
+    search_engine: duckduckgo
+    # google or duckduckgo
+    # More can be added in the searchbar component
+  - type: searchbar
+    placeholder: "Type here to search..."    
