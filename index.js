@@ -25,7 +25,7 @@ if (config.pages && config.pages.include) {
   }
 }
 
-app.get("/:page?", (req, res) => {
+app.get("/:page", (req, res) => {
   const pageName = req.params.page || "dashboard";
   const page = pages.find(p => p.name === pageName);
   if (!page) return res.status(404).send("Page not found");
