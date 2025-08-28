@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "A self-hosted dashboard to monitor your apps & services",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"

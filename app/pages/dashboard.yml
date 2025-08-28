@@ -1,6 +1,5 @@
 title: Dashboard • Pilot
+dock-footer: center
 components:
   - type: searchbar
-    placeholder: "Type "
-  - type: footer
-    align: center
+    placeholder: "Type here to search..."
