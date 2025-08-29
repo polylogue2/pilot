@@ -34,5 +34,5 @@ app.get('/', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Pilot running on http://localhost:${PORT}`);
+  console.log(`Pilot Dashboard running on http://localhost:${PORT}`);
 });
