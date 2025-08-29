@@ -1,6 +1,7 @@
 ui:
   accent-color: #CAA0FF
-  stylesheet-path: /assets/common.css
+  stylesheet-path: /app/assets/common.css
+  components-path: /app/assets/components
 
 pages:
   include:

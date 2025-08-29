@@ -1,23 +1,38 @@
-const express = require('express');
-const { execSync } = require('child_process');
+import express from 'express';
+import { renderPage, getFirstPage } from './render.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const PORT = 3000;
 
-const { version } = require('./package.json');
+app.use('/app/assets', express.static(path.join(__dirname, 'app', 'assets')));
 
-let branch = 'unknown';
-try {
-  branch = execSync('git rev-parse --abbrev-ref HEAD')
-    .toString()
-    .trim();
-} catch (err) {
-  console.warn('Could not detect Git branch');
-}
+app.get('/:page', async (req, res) => {
+  const { page } = req.params;
+  try {
+    const { status, html } = await renderPage(page);
+    res.status(status).send(html);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('<h1>Server error</h1>');
+  }
+});
 
-app.get('/', (req, res) => {
-  res.send('Pilot');
+app.get('/', async (req, res) => {
+  try {
+    const firstPage = await getFirstPage();
+    if (!firstPage) return res.status(404).send('<h1>No pages configured</h1>');
+    res.redirect(`/${firstPage}`);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('<h1>Server error</h1>');
+  }
 });
 
 app.listen(PORT, () => {
-  console.log(`Pilot ${version} (${branch}) running on http://localhost:${PORT}`);
+  console.log(`Pilot Dashboard running on http://localhost:${PORT}`);
 });
