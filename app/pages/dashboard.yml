@@ -5,6 +5,5 @@ width: 100px
 components:
   - type: searchbar
     placeholder: "Type here to search..."
-    search_engine: google
   - type: searchbar
     placeholder: "Type here to search..."    

@@ -1,8 +1,14 @@
 import fs from 'fs/promises';
 import path from 'path';
 import yaml from 'js-yaml';
+
 let configCache = null;
 const componentCache = {};
+
+const packageJson = JSON.parse(
+  await fs.readFile(path.join(process.cwd(), 'package.json'), 'utf-8')
+);
+const version = packageJson.version;
 
 async function loadConfig() {
   if (!configCache) {
@@ -59,12 +65,10 @@ export async function renderPage(pageName) {
   const pageFile = includePages.find(p => path.basename(p, '.yml') === pageName);
   if (!pageFile) return { status: 404, html: `<h1>Page not found: ${pageName}</h1>` };
 
-const pagePath = path.join(process.cwd(), 'app', pageFile);
-
+  const pagePath = path.join(process.cwd(), 'app', pageFile);
   const pageRaw = await fs.readFile(pagePath, 'utf-8');
   const pageConfig = yaml.load(pageRaw);
 
-  const accentColor = config.ui?.['accent-color'] || '#CAA0FF';
   const stylesheet = config.ui?.['stylesheet-path'] || '/assets/common.css';
 
   let containerClasses = 'container';
@@ -87,12 +91,25 @@ const pagePath = path.join(process.cwd(), 'app', pageFile);
       <link rel="stylesheet" href="${stylesheet}">
     </head>
     <body>
+      <div id="loading-overlay">
+        <div class="spinner"></div>
+      </div>
       <div class="${containerClasses}">
         ${htmlComponents.join('')}
       </div>
       <footer>
-        <p>hello</p>
+        <p>
+          Pilot <a href="https://github.com/polylogue2/pilot/releases/tag/v${version}">(<span class="highlight">v${version}</span>)</a>
+        </p>
       </footer>
+
+      <script>
+        window.addEventListener("load", () => {
+          const overlay = document.getElementById("loading-overlay");
+          overlay.classList.add("fade-out");
+          setTimeout(() => overlay.remove(), 600);
+        });
+      </script>
     </body>
     </html>
   `;
