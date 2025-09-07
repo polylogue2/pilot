@@ -91,25 +91,14 @@ export async function renderPage(pageName) {
       <link rel="stylesheet" href="${stylesheet}">
     </head>
     <body>
-      <div id="loading-overlay">
-        <div class="spinner"></div>
-      </div>
       <div class="${containerClasses}">
         ${htmlComponents.join('')}
       </div>
       <footer>
-        <p>
-          Pilot <a href="https://github.com/polylogue2/pilot/releases/tag/v${version}">(<span class="highlight">v${version}</span>)</a>
+        <p class="footer-main">
+          Pilot <a href="https://github.com/polylogue2/pilot/releases/tag/v${version}" target="_blank">(<span class="highlight">v${version}</span>)</a>
         </p>
       </footer>
-
-      <script>
-        window.addEventListener("load", () => {
-          const overlay = document.getElementById("loading-overlay");
-          overlay.classList.add("fade-out");
-          setTimeout(() => overlay.remove(), 600);
-        });
-      </script>
     </body>
     </html>
   `;
