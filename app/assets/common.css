@@ -66,3 +66,7 @@ body {
 .searchbar::placeholder {
   color: #aaa;
 }
+
+::selection {
+  background-color: var(--accent-color);
+}
