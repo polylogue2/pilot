@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "./components/searchbar.css";
+@import "./components/datetime.css";
 
 :root {
     --accent-color: #CAA0FF;
     --background-color: #101010;
     --overlay-color: #1a1a1a;
     --sub-color: #a0a0a0;
-    --selection-color: #fff;
+    --selection-color: #101010;
 }
 
 body {
@@ -40,36 +41,6 @@ body {
   color: var(--selection-color);
 }
 
-#loading-overlay {
-  position: fixed;
-  inset: 0;
-  background: var(--background-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  opacity: 1;
-  transition: opacity 0.6s ease;
-}
-
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 6px solid rgba(255, 255, 255, 0.2);
-  border-top: 6px solid var(--accent-color);
-  border-radius: 50%;
-  animation: spin 0.5s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-#loading-overlay.fade-out {
-  opacity: 0;
-  pointer-events: none;
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -89,7 +60,12 @@ body {
 footer {
   color: var(--sub-color);
   padding: 15px;
-  text-align: center;
+  margin: 0px 10px;
+  user-select: none;
+}
+
+footer-main {
+  text-align: left;
 }
 
 footer a {

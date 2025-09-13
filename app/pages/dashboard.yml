@@ -1,9 +1,7 @@
 title: Dashboard • Pilot
 align: center
-vertical: center
 width: 100px
 components:
+  - type: datetime
   - type: searchbar
-    placeholder: "Type here to search..."
-  - type: searchbar
-    placeholder: "Type here to search..."    
+    placeholder: "Search or enter a URL..."
