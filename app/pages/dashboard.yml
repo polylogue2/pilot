@@ -1,7 +1,0 @@
-title: Dashboard • Pilot
-align: center
-width: 100px
-components:
-  - type: datetime
-  - type: searchbar
-    placeholder: "Search or enter a URL..."

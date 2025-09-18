@@ -1,0 +1,8 @@
+ui:
+  accent-color: #CAA0FF
+  stylesheet-path: /src/assets/common.css
+  components-path: /src/assets/components
+
+pages:
+  - pages/default.yml
+  - pages/dev.yml

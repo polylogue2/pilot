@@ -1,7 +1,7 @@
 import express from 'express';
-import { renderPage, getFirstPage } from './render.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -9,30 +9,17 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3000;
 
-app.use('/app/assets', express.static(path.join(__dirname, 'app', 'assets')));
+const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf-8'));
+const version = packageJson.version;
 
-app.get('/:page', async (req, res) => {
-  const { page } = req.params;
-  try {
-    const { status, html } = await renderPage(page);
-    res.status(status).send(html);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('<h1>Server error</h1>');
-  }
+app.get('/:page', (req, res) => {
+  res.status(200).send(`<h1>${req.params.page}</h1>`);
 });
 
-app.get('/', async (req, res) => {
-  try {
-    const firstPage = await getFirstPage();
-    if (!firstPage) return res.status(404).send('<h1>No pages configured</h1>');
-    res.redirect(`/${firstPage}`);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('<h1>Server error</h1>');
-  }
+app.get('/', (req, res) => {
+  res.redirect('/home');
 });
 
 app.listen(PORT, () => {
-  console.log(`Pilot Dashboard running on http://localhost:${PORT}`);
+  console.log(`Pilot v${version} running on http://localhost:${PORT}`);
 });
