@@ -2,7 +2,10 @@ export function renderPage(config, version) {
   const bg = config.theme?.['background-color'] || '101010';
   const accent = config.theme?.['accent-color'] || 'caa0ff';
   const heading = '#fff';
-  const primary = '#a0a0a0';
+  const outline = '#202020'
+  const primary = '#aaa';
+  const placeholder = '#707070';
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,19 +13,29 @@ export function renderPage(config, version) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${config.title || 'Page'}</title>
   <link rel="stylesheet" href="/src/assets/common.css">
-    <style>
+  <style>
     :root {
       --color-bg: #${bg};
       --color-accent: #${accent};
       --color-heading: ${heading};
       --color-primary: ${primary};
+      --color-outline: ${outline};
+      --color-placeholder: ${placeholder};
     }
   </style>
 </head>
 <body>
-  <footer><span class="color-accent">Pilot</span> (v${version})</footer>
+  <div id="pilot-container"></div>
+  <footer>
+    <span class="color-accent"><a href="https://github.com/polylogue2/pilot/releases/tag/v${version}">Pilot</a></span> (v${version})
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <script src="/src/assets/paint.js"></script>
+  <script>
+    window.PILOT_CONFIG = ${JSON.stringify(config)};
+    window.PILOT_VERSION = "${version}";
+  </script>
 </body>
 </html>`;
 }

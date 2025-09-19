@@ -1,0 +1,67 @@
+<template>
+  <div class="component-searchbar">
+    <svg class="search-icon" fill="currentColor" height="20" viewBox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242 1.656a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+    </svg>
+    <input class="searchbar" placeholder="{{placeholder}}">
+  </div>
+</template>
+
+<style>
+.component-searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #141414;
+  border-radius: 10px;
+  padding: 0 1rem;
+  border: 1px solid var(--color-outline);
+  transition: border 0.2s;
+  margin: 0 auto 15px auto;
+}
+
+.component-searchbar:focus-within {
+  border-color: var(--color-accent);
+}
+
+.search-icon {
+  margin-right: 1rem;
+  color: var(--color-primary);
+}
+
+.searchbar {
+  background: transparent;
+  color: var(--color-primary);
+  font-family: 'JetBrains Mono Variable', monospace;
+  border: none;
+  outline: none;
+  padding: 1rem 0;
+  flex: 1;
+  font-size: 1rem;
+  border-radius: 10px;
+  min-width: 700px;
+}
+
+.searchbar::placeholder {
+  color: var(--color-placeholder);
+}
+</style>
+
+<script>
+const input = el.querySelector('input');
+input.addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    const query = input.value.trim();
+    if (!query) return;
+    const urlPattern = /^(https?:\/\/)?([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(:\d+)?(\/\S*)?$/;
+    if (urlPattern.test(query)) {
+      const url = query.startsWith('http://') || query.startsWith('https://')
+        ? query
+        : 'https://' + query;
+      window.location.href = url;
+    } else {
+      window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+    }
+  }
+});
+</script>

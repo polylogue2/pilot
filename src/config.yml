@@ -5,5 +5,5 @@ theme:
   background-color: 101010
   accent-color: CAA0FF
 pages:
-  - pages/default.yml
-  - pages/dev.yml
+  - /src/pages/default.yml
+  - /src/pages/dev.yml
