@@ -51,6 +51,10 @@ async function render(page) {
   if (!container) return;
   container.innerHTML = '';
 
+  if (page.title) {
+    document.title = page.title;
+  }
+
   const layoutWrapper = document.createElement('div');
   layoutWrapper.className = `layout layout-${page.layout || 'default'}`;
 
@@ -88,6 +92,7 @@ async function render(page) {
 
   container.appendChild(layoutWrapper);
 }
+
 
 window.addEventListener('DOMContentLoaded', async () => {
   const config = window.PILOT_CONFIG;

@@ -11,7 +11,8 @@ export function renderPage(config, version) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${config.title || 'Page'}</title>
+  <title>Page</title>
+  <link rel="icon" href="/src/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/src/assets/common.css">
   <style>
     :root {

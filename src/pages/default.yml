@@ -4,5 +4,6 @@ align:
   horizontal: center
   vertical: middle
 components:
+  - type: datetime_large
   - type: searchbar
     placeholder: Type here to search...
