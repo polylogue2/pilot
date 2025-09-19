@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'JetBrains Mono Variable';
+    src: url('/src/assets/fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    margin: 0;
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    font-family: 'JetBrains Mono Variable', monospace;
+    font-variation-settings: 'wght' 400;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+}
+
+.color-accent {
+    color: var(--color-accent);
+}
+
+footer {
+    text-align: center;
+    margin: 0;
+    padding: 1rem 0;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    user-select: none;
+}

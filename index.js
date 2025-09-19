@@ -2,24 +2,32 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import yaml from 'yaml';
+import { renderPage } from './src/render.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+
+const configPath = path.join(__dirname, 'src', 'config.yml');
+const config = yaml.parse(fs.readFileSync(configPath, 'utf-8'));
+
+app.use('/src', express.static(path.join(__dirname, 'src')));
+
+app.use((req, res, next) => {
+  res.setHeader('Server', 'Pilot');
+  next();
+});
+
+app.get('/', (req, res) => {
+  res.send(renderPage(config, version));
+});
 
 const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf-8'));
 const version = packageJson.version;
 
-app.get('/:page', (req, res) => {
-  res.status(200).send(`<h1>${req.params.page}</h1>`);
-});
-
-app.get('/', (req, res) => {
-  res.redirect('/home');
-});
-
+const PORT = config.gen?.port || 3000;
 app.listen(PORT, () => {
   console.log(`Pilot v${version} running on http://localhost:${PORT}`);
 });
