@@ -8,7 +8,7 @@
 </p>
 
 <p>A self-hosted dashboard to monitor your apps & services.</p>
-<img src="/docs/img/template_1.png">
+<img border-radius="10px" src="/docs/img/template_1.png">
 <h2>Features</h2>
 <ul><li>Customisable with themes and 
 <li>Lightweight & fast
