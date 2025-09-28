@@ -1,4 +1,4 @@
-<p><img src="/src/assets/pilot_square.svg"></p>
+<p><img width="100px" src="/src/assets/pilot_square.svg"></p>
 <h1>Pilot</h1>
 <p>
   <a href="#">Home</a> •
