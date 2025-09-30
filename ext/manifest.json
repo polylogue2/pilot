@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Pilot Enhancer",
+  "version": "1.0.1",
+  "description": "An extension that gives Pilot more features and more control over your browser.",
+  "permissions": ["scripting"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}

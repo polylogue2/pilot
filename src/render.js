@@ -28,7 +28,7 @@ export function renderPage(config, version) {
 <body>
   <div id="pilot-container"></div>
   <footer>
-    <span class="color-accent"><a href="https://github.com/polylogue2/pilot/releases/tag/v${version}">Pilot</a></span> (v${version})
+    <span class="color-accent" id="pilot-version"><a href="https://github.com/polylogue2/pilot/releases/tag/v${version}">Pilot</a></span> (${version})
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
